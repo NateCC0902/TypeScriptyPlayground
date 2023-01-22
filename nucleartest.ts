@@ -170,11 +170,18 @@ let vaildMove = function(board: board, pice: pice, originIndex: number[], target
 let flipPlayer = function(currentPlayer: "WHITE" | "BLACK") {
     return currentPlayer == "WHITE" ? "BLACK" : "WHITE";
 }
-
+type oneMoveHistory = {
+    moveIndex: number,
+    originIndex: number[],
+    targetIndex: number[],
+    pice: pice,
+    currentPlayer: "WHITE" | "BLACK",
+    isDie: boolean,
+}
 class app {
     board: board;
     currentPlayer: "WHITE" | "BLACK";
-    moveHistory: string[];
+    moveHistory: oneMoveHistory[];
     moveTimes: number;
 
     constructor() {
@@ -185,11 +192,13 @@ class app {
     }
     
     // #TODO
-    loadGame(saveGame: string[]) {
+    loadGame(saveGame: oneMoveHistory[]) {
         this.moveHistory = saveGame;
     }
-
     // #TODO
+    saveGame() {
+    }
+
     movePiece(fromCoord: number[], to: number[]): boolean {
         if (fromCoord.length != 2 || to.length != 2) {
             console.log('wrong input');
@@ -214,16 +223,14 @@ class app {
             myBoard.pices[myBoard.cells[tagetIndex[0]][tagetIndex[1]].key].currentPosition = [0, 0];
 
             //then move origin pice to targetIndex 
-            //#TODO make the key better
-            let key = "xxxx"
+            //TODO make the key better
+            let key = this.moveTimes.toString()+ "EMPTY";
             myBoard.cells[tagetIndex[0]][tagetIndex[1]] = myBoard.cells[originIndex[0]][originIndex[1]]; 
             myBoard.cells[originIndex[0]][originIndex[1]] = myBoard.pices[key] = 
                 { pic: ' ', currentPosition: [originIndex[0],originIndex[1]], color: 'NONE', name: 'empty', key: key };
             
             this.currentPlayer = flipPlayer(this.currentPlayer);
-            return true;
         } else {
-            //swap the pices
             let temp = myBoard.cells[tagetIndex[0]][tagetIndex[1]];
 
             myBoard.pices[myBoard.cells[tagetIndex[0]][tagetIndex[1]].key].currentPosition = originIndex;
@@ -233,8 +240,9 @@ class app {
             myBoard.cells[originIndex[0]][originIndex[1]] = temp;
 
             this.currentPlayer = flipPlayer(this.currentPlayer);
-            return true;
         }
+        this.moveTimes++;
+        return true;
     }
 }
 

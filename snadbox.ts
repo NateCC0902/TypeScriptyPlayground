@@ -1,6 +1,4 @@
 
-const url = Deno.args[0];
-console.log(url)
 let ar = [1, 2, 3, 4, 5, 6, 7, 8];
 
 function swap(arr:number[], i:number, j:number) {
