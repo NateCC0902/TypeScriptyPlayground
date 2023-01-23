@@ -170,6 +170,7 @@ let vaildMove = function(board: board, pice: pice, originIndex: number[], target
 let flipPlayer = function(currentPlayer: "WHITE" | "BLACK") {
     return currentPlayer == "WHITE" ? "BLACK" : "WHITE";
 }
+
 type oneMoveHistory = {
     moveIndex: number,
     originIndex: number[],
@@ -178,6 +179,11 @@ type oneMoveHistory = {
     currentPlayer: "WHITE" | "BLACK",
     isDie: boolean,
 }
+// Make rulse of how pices move
+let bishopMoveMent = function(){
+
+}
+
 class app {
     board: board;
     currentPlayer: "WHITE" | "BLACK";
@@ -251,5 +257,7 @@ let myApp = new app();
 let testBoard = myApp.board;
 
 console.log(printBoard(testBoard));
+
+console.log('\n');
 myApp.movePiece([8, 8], [2, 2]);
 console.log(printBoard(testBoard))
