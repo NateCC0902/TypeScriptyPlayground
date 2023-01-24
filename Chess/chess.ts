@@ -1,14 +1,5 @@
-type pice = {
-    pic: string;
-    currentPosition: number[];
-    color: "WHITE" | "BLACK" | "NONE";
-    name: string;
-    key: string;
-}
-type board = {
-    cells: pice[][];
-    pices: { [key: string]: pice };
-}
+import {pice,board, oneMoveHistory} from './type';
+
 function makeChessGame() {
     const pieces: { [key: string]: pice } = {
         'b1': { pic: '♟︎', currentPosition: [1, 3], color: 'BLACK', name: 'bishop', key: 'b1' },
@@ -171,20 +162,12 @@ let flipPlayer = function(currentPlayer: "WHITE" | "BLACK") {
     return currentPlayer == "WHITE" ? "BLACK" : "WHITE";
 }
 
-type oneMoveHistory = {
-    moveIndex: number,
-    originIndex: number[],
-    targetIndex: number[],
-    pice: pice,
-    currentPlayer: "WHITE" | "BLACK",
-    isDie: boolean,
-}
 // Make rulse of how pices move
 let bishopMoveMent = function(){
 
 }
 
-class app {
+export class app {
     board: board;
     currentPlayer: "WHITE" | "BLACK";
     moveHistory: oneMoveHistory[];
