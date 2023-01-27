@@ -81,7 +81,7 @@ class TreeNode {
             }else if(head.right != null && head.left == null){
                 head = head.right;
             }else if(head.right == null && head.right == null){
-                
+               
                 head = temp.pop()!;
                 if(head.left != null){
                     head = head.left;

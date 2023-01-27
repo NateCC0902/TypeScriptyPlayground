@@ -1,4 +1,4 @@
-import {pice,board, oneMoveHistory} from './type';
+import { pice, board, oneMoveHistory } from './type';
 
 function makeChessGame() {
     const pieces: { [key: string]: pice } = {
@@ -125,6 +125,53 @@ let isOcupied = function(board: board, targetIndex: number[]) {
     return !isEmpty(board, targetIndex);
 }
 
+function bishopMove(pice: pice, board: board){
+    return [[0,0]];
+}
+
+function rookMove(pice: pice, board: board){
+    return [[0,0]];
+}
+
+function queenMove(pice: pice, board: board){
+    return [[0,0]]
+}
+function kingMove(pice: pice, board: board){
+    return [[0,0]];
+}
+
+function knightMove(pice: pice, board: board){
+    return [[0,0]];
+}
+
+function pawnMove(pice: pice, board: board){
+    return [[0,0]];
+}
+
+let optionMove = function(pice: pice, board: board): number[][] {
+    let myPice = pice;
+    let myBoard = board;
+    let result:number[][] = [[]];
+    switch (myPice.name) {
+        case 'bishop':
+            result = bishopMove(myPice, myBoard);
+        case 'king':
+            result = kingMove(myPice, myBoard);
+        case 'knight':
+            result = knightMove(myPice, myBoard);
+        case 'pawn':
+            result = pawnMove(myPice, myBoard);
+        case 'queen':
+            result = queenMove(myPice, myBoard);
+        case 'rook':
+            result = rookMove(myPice, myBoard);
+        default:
+            result = [[0,0]];
+    }
+
+    return result;
+}
+
 // #TODO
 let vaildMove = function(board: board, pice: pice, originIndex: number[], targetIndex: number[], currentPlayer: "WHITE" | "BLACK") {
 
@@ -148,7 +195,7 @@ let vaildMove = function(board: board, pice: pice, originIndex: number[], target
         return false;
     }
 
-    if(board.cells[targetIndex[0]][targetIndex[1]].color == currentPlayer){
+    if (board.cells[targetIndex[0]][targetIndex[1]].color == currentPlayer) {
         console.log('you cant eat your own pice');
         return false;
     }
@@ -162,10 +209,7 @@ let flipPlayer = function(currentPlayer: "WHITE" | "BLACK") {
     return currentPlayer == "WHITE" ? "BLACK" : "WHITE";
 }
 
-// Make rulse of how pices move
-let bishopMoveMent = function(){
 
-}
 
 export class app {
     board: board;
@@ -179,7 +223,7 @@ export class app {
         this.moveHistory = [];
         this.moveTimes = 0;
     }
-    
+
     // #TODO
     loadGame(saveGame: oneMoveHistory[]) {
         this.moveHistory = saveGame;
@@ -213,11 +257,11 @@ export class app {
 
             //then move origin pice to targetIndex 
             //TODO make the key better
-            let key = this.moveTimes.toString()+ "EMPTY";
-            myBoard.cells[tagetIndex[0]][tagetIndex[1]] = myBoard.cells[originIndex[0]][originIndex[1]]; 
-            myBoard.cells[originIndex[0]][originIndex[1]] = myBoard.pices[key] = 
-                { pic: ' ', currentPosition: [originIndex[0],originIndex[1]], color: 'NONE', name: 'empty', key: key };
-            
+            let key = this.moveTimes.toString() + "EMPTY";
+            myBoard.cells[tagetIndex[0]][tagetIndex[1]] = myBoard.cells[originIndex[0]][originIndex[1]];
+            myBoard.cells[originIndex[0]][originIndex[1]] = myBoard.pices[key] =
+                { pic: ' ', currentPosition: [originIndex[0], originIndex[1]], color: 'NONE', name: 'empty', key: key };
+
             this.currentPlayer = flipPlayer(this.currentPlayer);
         } else {
             let temp = myBoard.cells[tagetIndex[0]][tagetIndex[1]];
@@ -233,14 +277,27 @@ export class app {
         this.moveTimes++;
         return true;
     }
-}
 
+    getPiceFromPices(key: string) {
+        return this.board.pices[key];
+    }
+
+    getPiceFromBoard(coord: number[]) {
+        let x = coord[0] - 1;
+        let y = coord[1] - 1;
+        return this.board.cells[[x][y]];
+    }
+
+}
+/* 
 //////////////////////////////////////////////////////////////////////
 let myApp = new app();
 let testBoard = myApp.board;
 
 console.log(printBoard(testBoard));
+let b = testBoard.pices['b1'];
+console.log(b);
+console.log(testBoard.cells[b.currentPosition[0] - 1][b.currentPosition[1] - 1]);
 
-console.log('\n');
-myApp.movePiece([8, 8], [2, 2]);
-console.log(printBoard(testBoard))
+ */
+

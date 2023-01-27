@@ -1,11 +1,41 @@
-
-let ar = [1, 2, 3, 4, 5, 6, 7, 8];
-
-function swap(arr:number[], i:number, j:number) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+class person {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
 }
-console.log(ar);
-console.log(swap(ar, 0, 7));
-console.log(ar);
+type indexable = {
+    [key: string]: any;
+}
+
+let p1 = new person("John");
+let p2 = new person("Cena");
+let p3 = new person("Randy");
+let p4 = new person("Orton");
+let p5 = new person("The");
+
+let dict: { [key: number]: person } = {};
+
+dict[1] = p1;
+dict[2] = p2;
+dict[3] = p3;
+dict[4] = p4;
+dict[5] = p5;
+
+for(let key in dict){
+    console.log(dict[key].name);
+}
+
+function squr(x:number):number{
+    return x*x;
+}
+
+function memo(fn: Function){
+    // let cache: { [key: any] :string[]} = [];
+    // if(cache[fn.arguments] != undefined){
+    //     return cache[fn.arguments];
+    // }else{
+    //     cache[fn.arguments] = fn.apply(this,arguments);
+    //     return fn
+    // }
+}
