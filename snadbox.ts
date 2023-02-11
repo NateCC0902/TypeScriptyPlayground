@@ -22,15 +22,15 @@ dict[3] = p3;
 dict[4] = p4;
 dict[5] = p5;
 
-for(let key in dict){
+for (let key in dict) {
     console.log(dict[key].name);
 }
 
-function squr(x:number):number{
-    return x*x;
+function squr(x: number): number {
+    return x * x;
 }
 
-function memo(fn: Function){
+function memo(fn: Function) {
     // let cache: { [key: any] :string[]} = [];
     // if(cache[fn.arguments] != undefined){
     //     return cache[fn.arguments];
@@ -39,3 +39,5 @@ function memo(fn: Function){
     //     return fn
     // }
 }
+
+

@@ -125,33 +125,33 @@ let isOcupied = function(board: board, targetIndex: number[]) {
     return !isEmpty(board, targetIndex);
 }
 
-function bishopMove(pice: pice, board: board){
-    return [[0,0]];
+function bishopMove(pice: pice, board: board) {
+    return [[0, 0]];
 }
 
-function rookMove(pice: pice, board: board){
-    return [[0,0]];
+function rookMove(pice: pice, board: board) {
+    return [[0, 0]];
 }
 
-function queenMove(pice: pice, board: board){
-    return [[0,0]]
+function queenMove(pice: pice, board: board) {
+    return [[0, 0]]
 }
-function kingMove(pice: pice, board: board){
-    return [[0,0]];
-}
-
-function knightMove(pice: pice, board: board){
-    return [[0,0]];
+function kingMove(pice: pice, board: board) {
+    return [[0, 0]];
 }
 
-function pawnMove(pice: pice, board: board){
-    return [[0,0]];
+function knightMove(pice: pice, board: board) {
+    return [[0, 0]];
+}
+
+function pawnMove(pice: pice, board: board) {
+    return [[0, 0]];
 }
 
 let optionMove = function(pice: pice, board: board): number[][] {
     let myPice = pice;
     let myBoard = board;
-    let result:number[][] = [[]];
+    let result: number[][] = [[]];
     switch (myPice.name) {
         case 'bishop':
             result = bishopMove(myPice, myBoard);
@@ -166,7 +166,7 @@ let optionMove = function(pice: pice, board: board): number[][] {
         case 'rook':
             result = rookMove(myPice, myBoard);
         default:
-            result = [[0,0]];
+            result = [[0, 0]];
     }
 
     return result;
