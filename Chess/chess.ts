@@ -23,7 +23,6 @@ function makeChessGame() {
         'p6': { pic: '♟︎', currentPosition: [2, 6], color: 'BLACK', name: 'pawn', key: 'p6' },
         'p7': { pic: '♟︎', currentPosition: [2, 7], color: 'BLACK', name: 'pawn', key: 'p7' },
         'p8': { pic: '♟︎', currentPosition: [2, 8], color: 'BLACK', name: 'pawn', key: 'p8' },
-
         'P1': { pic: '♙', currentPosition: [7, 1], color: 'WHITE', name: 'pawn', key: 'P1' },
         'P2': { pic: '♙', currentPosition: [7, 2], color: 'WHITE', name: 'pawn', key: 'P2' },
         'P3': { pic: '♙', currentPosition: [7, 3], color: 'WHITE', name: 'pawn', key: 'P3' },
